@@ -1,0 +1,15 @@
+name: project-work-transit-api
+
+services:
+  work-transit-db:
+      container_name: work-transit-db
+      image: postgres:17.4
+      restart: always
+      ports:
+        - "5432:5432"
+      environment:
+        POSTGRES_USER: ${DB_USERNAME}
+        POSTGRES_PASSWORD: ${DB_PASSWORD}
+        POSTGRES_DB: ${DB_NAME}
+      volumes:
+        - ./postgres:/var/lib/postgresql/data

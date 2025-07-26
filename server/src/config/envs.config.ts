@@ -9,6 +9,12 @@ interface EnvsVars {
   DB_PASSWORD: string;
   DB_NAME: string;
   DB_SYNCHRONIZE: boolean;
+  BCRYPT_SALT_ROUNDS: number;
+  JWT_SECRET: string;
+  EMAIL_HOST: string;
+  EMAIL_PORT: number;
+  EMAIL_USER: string;
+  EMAIL_PASS: string;
 }
 
 const envsSchema = joi
@@ -20,6 +26,12 @@ const envsSchema = joi
     DB_PASSWORD: joi.string().required(),
     DB_NAME: joi.string().required(),
     DB_SYNCHRONIZE: joi.boolean().default(true),
+    BCRYPT_SALT_ROUNDS: joi.number().default(10),
+    JWT_SECRET: joi.string().required(),
+    EMAIL_HOST: joi.string().required(),
+    EMAIL_PORT: joi.number().required(),
+    EMAIL_USER: joi.string().required(),
+    EMAIL_PASS: joi.string().required(),
   })
   .unknown(true);
 
@@ -41,5 +53,17 @@ export const envs = {
     password: envVars.DB_PASSWORD,
     name: envVars.DB_NAME,
     synchronize: envVars.DB_SYNCHRONIZE,
+  },
+  bcrypt: {
+    saltRounds: envVars.BCRYPT_SALT_ROUNDS,
+  },
+  jwt: {
+    secret: envVars.JWT_SECRET,
+  },
+  email: {
+    host: envVars.EMAIL_HOST,
+    port: envVars.EMAIL_PORT,
+    user: envVars.EMAIL_USER,
+    pass: envVars.EMAIL_PASS,
   },
 };

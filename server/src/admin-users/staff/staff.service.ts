@@ -1,26 +1,25 @@
-import { Injectable } from '@nestjs/common';
-import { CreateStaffDto } from './dto/create-staff.dto';
-import { UpdateStaffDto } from './dto/update-staff.dto';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Staff } from './entities/staff.entity';
+import { Repository } from 'typeorm';
+import { FindOneByEmailResponseDto } from './dto/find-one-by-emai.dto';
+import { formatStaffResponse } from './helpers/format-staff-response.helper';
 
 @Injectable()
 export class StaffService {
-  create(createStaffDto: CreateStaffDto) {
-    return 'This action adds a new staff';
-  }
+  constructor(
+    @InjectRepository(Staff)
+    private readonly staffRepository: Repository<Staff>,
+  ) {}
 
-  findAll() {
-    return `This action returns all staff`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} staff`;
-  }
-
-  update(id: number, updateStaffDto: UpdateStaffDto) {
-    return `This action updates a #${id} staff`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} staff`;
+  async findOneByEmail(email: string): Promise<FindOneByEmailResponseDto> {
+    const staff = await this.staffRepository.findOne({
+      where: { email, isActive: true },
+    });
+    if (!staff)
+      throw new NotFoundException(
+        `El personal con el email ${email} no se encuentra registrado`,
+      );
+    return formatStaffResponse(staff);
   }
 }

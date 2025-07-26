@@ -1,5 +1,6 @@
+import { UserHasRoles } from 'src/admin-users/users/entities/user-has-roles.entity';
 import { Timestamped } from 'src/common/entities/timestamped.entity';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Role extends Timestamped {
@@ -18,4 +19,7 @@ export class Role extends Timestamped {
     default: true,
   })
   isActive: boolean;
+
+  @OneToMany(() => UserHasRoles, (userHasRoles) => userHasRoles.role)
+  userHasRoles: UserHasRoles[];
 }

@@ -69,7 +69,7 @@ export class User extends Timestamped {
 
   @ManyToOne(() => Staff, (staff) => staff.users)
   @JoinColumn({
-    name: 'staff_id',
+    name: 'staffId',
   })
   staff: Staff;
 }

@@ -6,6 +6,8 @@ import { AdminVehiclesModule } from './admin-vehicles/admin-vehicles.module';
 import { CommonModule } from './common/common.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
+import { AuthModule } from './auth/auth.module';
+import { EmailsModule } from './emails/emails.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { typeOrmConfig } from './config/typeorm.config';
     AdminUsersModule,
     AdminVehiclesModule,
     CommonModule,
+    AuthModule,
+    EmailsModule,
   ],
 })
 export class AppModule {}

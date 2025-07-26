@@ -1,98 +1,245 @@
+# Server - Work Transit
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este es el servidor (Backend) del proyecto **Work Transit**. Está construido con **NestJS** y **PostgreSQL** como gestor de base de datos, diseñado para la gestión integral de sistemas de transporte.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Arquitectura de Software – Backend (API RESTful)
 
-## Description
+### 📌 Tecnologías Utilizadas
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Lenguaje de Programación:** JavaScript / TypeScript
+- **Entorno de Ejecución:** Node.js v18+
+- **Framework:** NestJS 🚀
+- **ORM:** TypeORM 🗄️
+- **Gestor de Base de Datos:**
+  - **PostgreSQL** (Almacenamiento de datos)
+- **Administrador de Base de Datos:** pgAdmin / TablePlus 🛠️
+- **Contenerización:** Docker & Docker Compose 🐳
+- **Documentación:** Swagger/OpenAPI 📄
+- **Autenticación:** JWT (JSON Web Tokens) 🔐
+- **Validación:** Class Validator & Class Transformer ✅
+- **Testing:**
+  - **Jest** (Pruebas Unitarias e Integración 🔍)
+  - **Postman / Insomnia** (Pruebas Funcionales 📡)
 
-## Project setup
+### 🏗️ Estilo y Patrón de Arquitectura
 
-```bash
-$ pnpm install
+- **Estilo de Arquitectura:** Cliente / Servidor (Monolítica)
+- **Patrón de Arquitectura:** Modular (Propuesta por NestJS) usando conceptos de MVC
+- **Patrones de Diseño:**
+  - **Estructurales:** Adapters, Decorators
+  - **De Comportamiento:** Strategy, Dependency Injection
+  - **Creacionales:** Factory
+
+### 📁 Estructura del Proyecto
+
+```
+server/
+├── src/
+│   ├── admin-routes/         # Gestión de rutas de transporte
+│   ├── admin-trips/          # Gestión de viajes
+│   ├── admin-users/          # Gestión de usuarios y roles
+│   ├── admin-vehicles/       # Gestión de vehículos
+│   ├── auth/                 # Autenticación y autorización
+│   ├── common/               # Utilidades comunes
+│   ├── config/               # Configuraciones
+│   ├── emails/               # Gestión de correos
+│   └── main.ts              # Punto de entrada
+├── docker-compose.yml        # Configuración de contenedores
+├── .env.template            # Template de variables de entorno
+└── README.md
 ```
 
-## Compile and run the project
+## 📦 Instalación y Ejecución
+
+### Prerrequisitos
+
+- **Node.js** v18 o superior
+- **pnpm** (recomendado) o npm
+- **Docker** y **Docker Compose**
+- **Git**
+
+### 1. Clonar el repositorio
 
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+git clone https://github.com/Josmendev/project-app-work-transit.git
+cd project-app-work-transit/server
 ```
 
-## Run tests
+### 2. Instalar dependencias
 
 ```bash
-# unit tests
-$ pnpm run test
+# Con pnpm (recomendado)
+pnpm install
 
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+# O con npm
+npm install
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 3. Configurar variables de entorno
 
 ```bash
-$ pnpm install -g mau
-$ mau deploy
+# Copiar el template
+cp .env.template .env
+
+# Editar las variables según tu entorno
+# Ejemplo de configuración:
+DB_USERNAME=postgres
+DB_PASSWORD=tu_password
+DB_NAME=work_transit_db
+JWT_SECRET=tu_jwt_secret_super_seguro
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 4. Levantar la base de datos
 
-## Resources
+```bash
+# Iniciar PostgreSQL con Docker Compose
+docker-compose up -d
 
-Check out a few resources that may come in handy when working with NestJS:
+# Verificar que esté corriendo
+docker-compose ps
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### 5. Iniciar el servidor
 
-## Support
+```bash
+# Modo desarrollo
+pnpm start:dev
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# Modo producción
+pnpm build
+pnpm start:prod
+```
 
-## Stay in touch
+### 6. Verificar la instalación
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- **API:** http://localhost:3500
+- **Documentación (Swagger):** http://localhost:3500/api/v1/docs
+- **Base de datos:** localhost:5432
 
-## License
+## 🔐 Autenticación
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+El sistema utiliza **JWT** para la autenticación. Endpoints principales:
+
+- **POST** `/auth/login` - Iniciar sesión
+- **POST** `/auth/confirm-account` - Confirmar cuenta
+- **POST** `/auth/request-password-reset` - Solicitar reset de contraseña
+- **GET** `/auth/user-profile` - Obtener perfil del usuario
+
+### Usuario por defecto
+
+Durante el desarrollo, puedes usar estas credenciales para iniciar sesión:
+
+- **Usuario:** `70125834`
+- **Contraseña:** `70125834`
+
+## 📚 Documentación API
+
+La documentación completa de la API está disponible en:
+
+**http://localhost:3000/api/v1/docs**
+
+Incluye:
+- Esquemas de request/response
+- Códigos de estado HTTP
+- Ejemplos de uso
+- Autenticación con Bearer Token
+
+## 🐳 Docker Commands
+
+```bash
+# Levantar servicios
+docker-compose up -d
+
+# Ver logs
+docker-compose logs -f
+
+# Parar servicios
+docker-compose down
+
+# Generar backup de la DB
+docker-compose exec work-transit-db pg_dump -U postgres -d work_transit_db > backup.sql
+
+# Restaurar backup
+docker-compose exec -T work-transit-db psql -U postgres -d work_transit_db < backup.sql
+```
+
+## 🧪 Testing
+
+```bash
+# Pruebas unitarias
+pnpm test
+
+# Pruebas e2e
+pnpm test:e2e
+
+# Coverage
+pnpm test:cov
+```
+
+## 📈 Scripts Disponibles
+
+```bash
+# Desarrollo
+pnpm start:dev          # Servidor en modo desarrollo
+pnpm start:debug        # Servidor con debugging
+
+# Producción
+pnpm build              # Compilar proyecto
+pnpm start:prod         # Servidor en modo producción
+
+# Utilidades
+pnpm lint               # Analizar código
+pnpm format             # Formatear código
+```
+
+## 🌍 Variables de Entorno
+
+| Variable | Descripción | Ejemplo |
+|----------|-------------|---------|
+| `DB_USERNAME` | Usuario de PostgreSQL | `postgres` |
+| `DB_PASSWORD` | Contraseña de PostgreSQL | `mypassword` |
+| `DB_NAME` | Nombre de la base de datos | `work_transit_db` |
+| `JWT_SECRET` | Secret para JWT | `my-super-secret-key` |
+| `BCRYPT_SALT_ROUNDS` | Rounds para bcrypt | `10` |
+
+## 🤝 Contribución
+
+1. Fork el proyecto
+2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir un Pull Request
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+
+## 👨‍💻 Autor
+
+**JosmenDev** - [GitHub](https://github.com/Josmendev)
+
+## 🚀 Estado del Proyecto
+
+🟢 **En Desarrollo Activo**
+
+### Funcionalidades Implementadas
+
+- ✅ Sistema de autenticación JWT
+- ✅ Gestión de usuarios y roles
+- ✅ CRUD de vehículos y marcas
+- ✅ Gestión de rutas y paradas
+- ✅ Sistema de viajes
+- ✅ Reset de contraseñas con PIN
+- ✅ Documentación con Swagger
+- ✅ Dockerización completa
+
+### Próximas Funcionalidades
+
+- 🔄 Sistema de notificaciones
+- 🔄 Reportes y analytics
+- 🔄 API para aplicación móvil
+- 🔄 Sistema de geolocalización
